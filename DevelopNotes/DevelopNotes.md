@@ -44,5 +44,12 @@ helloPBR效果
   ![alt text](assets/02.png)
 
 # July.21 2024
-Todo: </br>
-[UI] 整体框架，界面，显示窗口
+工作：
+1. 完成Anne Engine框架搭建
+2. 增加整个项目和Engine内的CMakeLists
+3. 增加3Party的文件
+
+收获：
+1. 工作流程，在vscode开发，需要打断点的时候再到VisualStudio内去调试
+2. CMakeLists文件 博大精深，可以定义自己的静态库，也可以link其他的静态库，include third里的头文件。这样就不需要自己再到Visual Studio内去重新link。
+3. 第三方库，分成需要Header-only的，和需要link的两种。前者只需要include它的hpp，后者则需要添加进CMakeLists.txt，去执行Build。
