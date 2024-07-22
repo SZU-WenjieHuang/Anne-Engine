@@ -53,3 +53,8 @@ helloPBR效果
 1. 工作流程，在vscode开发，需要打断点的时候再到VisualStudio内去调试
 2. CMakeLists文件 博大精深，可以定义自己的静态库，也可以link其他的静态库，include third里的头文件。这样就不需要自己再到Visual Studio内去重新link。
 3. 第三方库，分成需要Header-only的，和需要link的两种。前者只需要include它的hpp，后者则需要添加进CMakeLists.txt，去执行Build。
+
+# July.22 2024
+工作:
+1. 增加单例模式 Singleton的hpp文件
+
