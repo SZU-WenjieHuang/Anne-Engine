@@ -54,7 +54,19 @@ helloPBR效果
 2. CMakeLists文件 博大精深，可以定义自己的静态库，也可以link其他的静态库，include third里的头文件。这样就不需要自己再到Visual Studio内去重新link。
 3. 第三方库，分成需要Header-only的，和需要link的两种。前者只需要include它的hpp，后者则需要添加进CMakeLists.txt，去执行Build。
 
+
 # July.22 2024
 工作:
 1. 增加单例模式 Singleton的hpp文件
 
+
+# July.23 2024
+工作：
+1. 增加Application UI的空实现。
+2. 增加EditorProject的CMakeLists。
+3. 学习CMakeLists文件里的，可执行文件，Library，依赖关系。以及依赖关系中的继承关系。
+
+收获：
+1. 详见 Note3的 markdown。
+2. 一个可执行文件的CmakeLists，是有很好的设计模式架构的。 一个可执行文件，多个Library。 然后他们需要在CmakeLists内添加依赖关系。约定谁先被编译，谁依赖谁。
+3. 在CmakeList内定义的依赖关系 也是有类似的private public interface关系，可以管理依赖的传递。

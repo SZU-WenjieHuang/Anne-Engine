@@ -46,7 +46,7 @@ list(APPEND ENGINE_SOURCE
     ${SRC}
 )
 
-# Compile file
+# Add Library (作为一个库 被Editor的可执行文件添加)
 add_library(${TARGET_NAME} STATIC ${ENGINE_SOURCE})
 
 # Link to all third party library (or include Header-Only Files) used in Engine
