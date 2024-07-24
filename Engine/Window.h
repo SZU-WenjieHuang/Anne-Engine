@@ -34,6 +34,10 @@ namespace AnneEngine
         ~EngineWindow();
 
     public:
+        // getters
+        GLFWwindow *GetWindow();
+        EngineWindow::Size GetSize();
+
         // windows
         void Resize(unsigned int width, unsigned int height);
         void RescaleViewport();

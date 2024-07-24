@@ -77,9 +77,17 @@ helloPBR效果
 1. ApplicationUI的实现(有待完成)
 2. Window的实现(有待完成)
 3. 增加简单的GraphicsAPI类，尚未有完整功能
+4. 添加窗口类Window
+5. 添加Function和GLFW相关笔记
 
 收获
 1. 关于是否需要增加Static</br>
   a. 全局函数：不需要 static 关键字，因为它们不在类内，可以直接调用。</br>
   b. 类的静态成员函数：如果你希望在不实例化类的情况下调用函数，可以使用 static 关键字。这样，函数可以通过类名直接调用，而不需要类实例。</br>
 2. 关于std::shared_ptr 的markdown，以及合适需要使用enable_shared_from_this？ 其实就是增加了一个 shared_from_this 的成员函数。
+3. Window类里，使用Function的别名。并且有很好的观察者模式去处理所有IO的输入。
+4. Window类里，有类似LearnOpenGL的glfw的初始化和窗口创建。
+5. 所有的IO回调函数，都需要被注册进GLFW里。
+
+Todo:
+1. 具体响应IO输入的函数 尚未实现
