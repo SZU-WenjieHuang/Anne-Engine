@@ -70,3 +70,16 @@ helloPBR效果
 1. 详见 Note3的 markdown。
 2. 一个可执行文件的CmakeLists，是有很好的设计模式架构的。 一个可执行文件，多个Library。 然后他们需要在CmakeLists内添加依赖关系。约定谁先被编译，谁依赖谁。
 3. 在CmakeList内定义的依赖关系 也是有类似的private public interface关系，可以管理依赖的传递。
+
+
+# July.24 2024
+工作
+1. ApplicationUI的实现(有待完成)
+2. Window的实现(有待完成)
+3. 增加简单的GraphicsAPI类，尚未有完整功能
+
+收获
+1. 关于是否需要增加Static</br>
+  a. 全局函数：不需要 static 关键字，因为它们不在类内，可以直接调用。</br>
+  b. 类的静态成员函数：如果你希望在不实例化类的情况下调用函数，可以使用 static 关键字。这样，函数可以通过类名直接调用，而不需要类实例。</br>
+2. 关于std::shared_ptr 的markdown，以及合适需要使用enable_shared_from_this？ 其实就是增加了一个 shared_from_this 的成员函数。
