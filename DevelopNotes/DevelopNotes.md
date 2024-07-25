@@ -90,4 +90,12 @@ helloPBR效果
 5. 所有的IO回调函数，都需要被注册进GLFW里。
 
 Todo:
-1. 具体响应IO输入的函数 尚未实现
+1. 具体响应IO输入的函数 尚未实现（实现在ApplicationUI中）
+
+# July.25 2024
+工作
+1. 学习ApplicationUI怎么组织各个Panel
+
+收获
+1. ApplicationUI负责各个Panel的管理
+2. Panels内负责各个功能的实现 算是一种解耦的关系
