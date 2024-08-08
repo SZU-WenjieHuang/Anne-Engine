@@ -5,7 +5,6 @@ namespace AnneEngine
 {
     namespace Application
     {
-        // 
         class Selected : public Singleton<Selected>
         {
             private:
@@ -13,7 +12,7 @@ namespace AnneEngine
             public:
                 Selected() = delete;
                 Selected(token){}
-                // Todo: 线需要增加
+                // Todo: 需要增加 Scene节点之后添加
                 // Scene::Node::Ptr node{nullptr};
         };
     }
