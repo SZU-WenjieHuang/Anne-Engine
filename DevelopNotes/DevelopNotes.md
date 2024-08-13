@@ -115,3 +115,9 @@ Todo:
 Others
 1. ImGuiFileDialog 文件查询能力
 2. FontAwesome 的字体库能力
+
+# August.13 2024
+
+1. 完成Inspector系统的空实现，所有的component都还没具体实现 但框架有了
+2. ModelPreview的空实现
+3. 整理ECS框架的笔记
