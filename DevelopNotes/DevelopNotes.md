@@ -105,7 +105,7 @@ Todo:
 1. 发现已经有10天没做自己的引擎了，之前都一直在忙着22的新需求和工作上的事情，争取往后每天早上9:30之前，晚上21:00之后，都开始做小引擎 加油！
 2. 增加Selected的相关逻辑，下一步是增加Scene
 
-# August.12 2024
+# August.12 2024 Mon
 
 运行时查询的Inspector组件
 1. 开始写Inspector组件的能力，允许用户在运行时候动态查询每一个组件的属性。
@@ -116,8 +116,14 @@ Others
 1. ImGuiFileDialog 文件查询能力
 2. FontAwesome 的字体库能力
 
-# August.13 2024
+# August.13 2024 Tue
 
 1. 完成Inspector系统的空实现，所有的component都还没具体实现 但框架有了
 2. ModelPreview的空实现
 3. 整理ECS框架的笔记
+
+# August.14 2024 Wed
+
+1. 添加对FunctionPannel的部分实现
+2. 添加对Texture类的空实现
+3. 添加ImGui创建窗口的笔记
