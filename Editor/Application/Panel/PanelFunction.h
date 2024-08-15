@@ -24,9 +24,18 @@ namespace AnneEngine
             FunctionPanel() = delete;
 
             using Ptr = std::unique_ptr<FunctionPanel>;
+
             void Show();
-            inline bool IsShow() { return m_show; }
-            inline void SetShow(bool show) { m_show = show; }
+
+            inline bool IsShow() 
+            { 
+                return m_show; 
+            }
+
+            inline void SetShow(bool show) 
+            {
+                 m_show = show; 
+            }
 
         private:
             std::unordered_map<std::string, Texture2D::Ptr> m_resource_icons;
@@ -36,7 +45,6 @@ namespace AnneEngine
             void ResourcePanel();
             void ConsolePanel();
             void FileDiaglogues();
-            
         };
     }
 }
