@@ -128,8 +128,13 @@ Others
 2. 添加对Texture类的空实现
 3. 添加ImGui创建窗口的笔记
 
-# August.15 2024 Wed
+# August.15 2024 Thu
 
 1. 完成FunctionPannel类的实现，实现绘制一些FunctionPanel的能力，通过ImGui库去绘制UI(终于知道UI是怎么绘制的了 感动，也是调用基础的API能力库)
 2. 添加了MeshManager类的空实现，主要是在FunctionPannel内 需要调用它的能力去展示预览模型，基本都是空实现，有待完善。是整个Mesh的绘制基础。
 3. 完成Common.h内文件浏览器的实现，主要是通过ImGuiFileDialog判断有没有选中一些模型，有选中了就可以执行FileManager的Import操作。
+
+# August.16 2024 Fri
+
+1. 开始PanelInspector的开发
+2. 研究PanelInspector中的反射机制

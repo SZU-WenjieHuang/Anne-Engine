@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Engine/Function/SceneManager.h"
 #include "Engine/Core/Singleton.hpp"
 #include "Engine/Function/Graphics/Texture/All.h"
 #include "Engine/Function/Graphics/MeshManager.h"
