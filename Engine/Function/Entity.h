@@ -8,8 +8,15 @@
 
 namespace AnneEngine
 {
+    /**
+     * @brief Entity的序列化与反序列化过程
+    */
     class ComponentSerilizationMap
     {
+        friend class ComponentRegisterationMap;
+    
+    private:
+        
 
     };
 

@@ -138,3 +138,10 @@ Others
 
 1. 开始PanelInspector的开发
 2. 研究PanelInspector中的反射机制
+
+# August.20 2024 Tue
+
+1. 这个周末在忙很多事情 错过了几天的引擎开发 今日继续
+2. 过程中 发现Panel 严重依赖 SceneManager -> Scene -> Entity -> Serialization
+3. 先完善一下 Entity 和 Serialization，再继续开发Panel
+4. 添加引擎内需要的 反序列化和序列化笔记
