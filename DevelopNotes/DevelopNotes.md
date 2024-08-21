@@ -145,3 +145,9 @@ Others
 2. 过程中 发现Panel 严重依赖 SceneManager -> Scene -> Entity -> Serialization
 3. 先完善一下 Entity 和 Serialization，再继续开发Panel
 4. 添加引擎内需要的 反序列化和序列化笔记
+
+# August.21 2024 Wed
+
+1. 完善Entity组件，主要是序列化相关的代码
+2. 开始完善Entity类
+3. 添加对于Entity的Registry的笔记 (感觉主要像是ptr 和一个全局唯一标识)

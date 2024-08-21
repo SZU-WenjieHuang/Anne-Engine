@@ -122,3 +122,66 @@ print(entity2.get_component(Position).x, entity2.get_component(Position).y)  # �
 
 ### 总结
 在这个示例中，`Entity` 本身是独立的，它的能力（如移动能力）是通过将 `Position` 和 `Velocity` 组件动态组合而成的。系统负责处理这些实体的行为。通过这种方式，你可以灵活地添加、删除和组合组件，使得逻辑非常清晰且易于维护。
+
+
+
+### Entity内的Registry
+在实体-组件-系统（Entity-Component-System, ECS）架构中，`Registry`是一个用于管理和存储实体及其组件的关键结构。以下是关于`Registry`的详细解释以及它在ECS中的角色：
+
+#### 什么是Registry？
+
+1. **实体和组件的管理**:
+   - 在ECS中，"实体"（Entity）通常是指游戏中的对象，比如角色、道具或场景元素。实体本身并不包含数据或行为，它只是一个容器，用于关联不同的组件。
+   - "组件"（Component）是存储实体特征的数据单元，例如位置、速度、渲染信息等。
+
+2. **Registry的角色**:
+   - `Registry`扮演着核心的管理角色，负责保存所有的实体与它们的组件。它的主要职责包括：
+     - 创建实体并分配唯一标识符（ID）。
+     - 管理和存储每个实体的组件，通常通过某种形式的映射（例如哈希表）。
+     - 提供对实体和组件的查询和遍历功能，以便系统（System）能够高效地处理和更新。
+
+3. **数据驱动的设计**:
+   - 利用`Registry`，ECS架构促进了数据与逻辑的分离。系统负责处理和更新数据，而组件仅仅是数据的载体，实体则是这些数据的组合。
+
+#### ECS中的Registry的好处
+
+- **高效的查询**:
+  - 可以根据组件类型快速地查询和操作实体。这种方式比传统的面向对象设计（例如，类继承）在获取和处理特定类型的数据时更有效。
+
+- **解耦**:
+  - 组件间是松散耦合的，这意味着你可以灵活地添加、移除或修改组件，而不需要重新设计整个实体。这样也易于实现功能的扩展和重用。
+
+- **支持高并发**:
+  - Entt等库设计的`Registry`能够支持多线程环境，使得在不同线程中进行系统更新和查询成为可能。
+
+```cpp
+#include <entt/entt.hpp>
+
+void update_position(entt::registry &registry, float delta_time) {
+    auto view = registry.view<Position, Velocity>(); // 选择拥有Position和Velocity组件的实体
+    for (auto entity : view) {
+        auto &pos = view.get<Position>(entity);
+        const auto &vel = view.get<Velocity>(entity);
+
+        pos.x += vel.vx * delta_time;
+        pos.y += vel.vy * delta_time;
+    }
+}
+
+int main() {
+    entt::registry registry;
+
+    // 创建一个实体
+    auto entity = registry.create();
+
+    // 为实体添加组件
+    registry.emplace<Position>(entity, 0.0f, 0.0f);
+    registry.emplace<Velocity>(entity, 1.0f, 1.0f);
+    registry.emplace<Renderable>(entity, "sprite.png");
+
+    // 更新位置
+    update_position(registry, 0.016f); // 假设每帧的时间是16毫秒
+
+    return 0;
+}
+```

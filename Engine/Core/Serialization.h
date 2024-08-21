@@ -12,8 +12,38 @@ namespace AnneEngine
     }
 }
 
-// 生成不同类型的函数
-// Todo
+// 生成不同类型的函数，利用entity库 和 nlohmann::json库的序列化和反序列化能力
+
+/**
+ * @brief 将某个json反序列化到某个指定的type
+*/
+#define DESERILIZING_TO_ENTITY(Type)                                                                             \
+    static void BindComponentFromJson(entt::entity &id, std::shared_ptr<entt::registry> &reg, nlohmann::json &j) \
+    {                                                                                                            \
+        Type t = j;                                                                                              \
+        reg->emplace<Type>(id, t);                                                                               \
+    }
+
+/**
+ * @brief 序列化某个type
+*/
+#define SERIALIZATION_FROM_TYPE_ANY(Type)                    \
+    inline static nlohmann::json FromVoidType(void *typeAny) \
+    {                                                        \
+        return (*static_cast<Type *>(typeAny));              \
+    }
+
+/**
+ * @brief 序列化某个type(指定参数)
+*/
+#define SERIALIZATION_NORMAL_ENABLE(Type, ...) NLOHMANN_DEFINE_TYPE_INTRUSIVE(Type, __VA_ARGS__)
+
+/**
+ * @brief 序列化与反序列化的组合逻辑
+*/
+#define SERIALIZATION_COMPONENT_ENABLE(Type, ...)  \
+    SERIALIZATION_NORMAL_ENABLE(Type, __VA_ARGS__) \
+    DESERILIZING_TO_ENTITY(Type)
 
 namespace glm
 {
