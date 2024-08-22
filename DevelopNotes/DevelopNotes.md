@@ -151,3 +151,8 @@ Others
 1. 完善Entity组件，主要是序列化相关的代码
 2. 开始完善Entity类
 3. 添加对于Entity的Registry的笔记 (感觉主要像是ptr 和一个全局唯一标识)
+
+
+# August.22 2024 Thu
+
+1. 完善Component类和Entity类
