@@ -42,7 +42,46 @@ void InspectorPanel::ListEntityAllComponents()
         {
             return;
         }
-        
+
+        auto reg = entity->GetRegistry();
+        for(auto &&curr : reg->storage())
+        {
+            auto &storage = curr.second; // 某个特定类型的Component集合
+            if (storage.contains(entity->GetEntity())) // 包含这个Entity的组件
+            {
+                entt::id_type id = curr.first; // ComponentID
+                void *componentTypeAny = storage.get(entity->GetEntity()); // Component
+                inspection::ComponentUIMap::Inspect(entity, id, componentTypeAny); //执行每一个Component的查找逻辑
+            }     
+
+            ImGui::Separator(); // 分割线
+
+            // 可以选择的添加指定Component到Entity
+            if (ImGui::BeginCombo("Add Component", "", ImGuiComboFlags_None))
+            {
+                auto &all_components_ctors = ComponentRegisterationMap::GetAllCtorFuncs();
+                // 查找所有已注册的Component的Create函数
+                for (auto &[name, ctor_func] : all_components_ctors)
+                {
+                    if (ImGui::Selectable(name.data()))
+                    {
+                        ctor_func(Selected::Instance().node->object);
+                        ImGui::SetItemDefaultFocus();
+                    }
+                }
+                ImGui::EndCombo();
+            }
+        }
+    }
+    ImGui::EndTabItem();
+    ImGui::PopItemWidth();
+}
+
+void InspectorPanel::Show()
+{
+    if (m_show)
+    {
+        ListEntityAllComponents();
     }
 }
 
@@ -51,5 +90,6 @@ void InspectorPanel::ListEntityAllComponents()
 */
 void InspectorPanel::InspectSceneNode()
 {
+    // auto &config = SceneManager::Instance().GetCurrentScene()->GetConfig();
 
 }

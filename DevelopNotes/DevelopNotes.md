@@ -156,3 +156,8 @@ Others
 # August.22 2024 Thu
 
 1. 完善Component类和Entity类
+
+
+# August.23 2024 Fri
+
+1. 完善Scene类，和Inspector类

@@ -185,3 +185,34 @@ int main() {
     return 0;
 }
 ```
+
+## view
+在一个ECS（实体-组件-系统）框架中，`m_registry->view` 通常用于快速查找具有特定组件的实体。ECS 是一种用于游戏开发和其他实时应用程序的模式，它将实体（Entities）和组件（Components）分离，系统（Systems）则用来处理这些组件上的逻辑。
+
+简而言之，ECS 模式主要包括以下几个部分：
+
+1. **实体（Entities）**：游戏中的所有对象都可以被看作一个实体。每个实体只是一个唯一的标识符（ID）。
+
+2. **组件（Components）**：这些是附加到实体上的数据单元，每个组件只包含数据，不包含行为。例如，一个 `Position` 组件可能包含一个实体的位置信息。
+
+3. **系统（Systems）**：这些用于对组件进行操作的逻辑单元。系统会遍历所有具有它们需要的组件的实体，并对其进行处理。
+
+在这个上下文中，`m_registry` 是一个管理所有实体和组件的注册表。当你调用 `m_registry->view<Component>()` 时，它会返回一个包含所有具有特定组件的实体的集合。这样，你可以很方便地遍历这些实体并进行相应的处理。
+
+例如，如果你有一个注册表 `m_registry`，一个 `Position` 组件和一个 `Velocity` 组件，你可能会有一个移动系统（Movement System），它会这么工作：
+
+```cpp
+for (auto entity : m_registry->view<Position, Velocity>()) {
+    auto& pos = m_registry->get<Position>(entity);
+    auto& vel = m_registry->get<Velocity>(entity);
+
+    // 更新位置
+    pos.x += vel.dx;
+    pos.y += vel.dy;
+}
+```
+
+这段代码会遍历所有同时拥有 `Position` 和 `Velocity` 组件的实体，并更新它们的位置。
+
+通过这种方式，`m_registry->view` 提供了一种高效的方式来查找并操作具有特定组件的实体集合。这种方法在大型游戏和复杂实时应用中非常有用，因为它能大幅提高系统的可维护性和性能。
+
