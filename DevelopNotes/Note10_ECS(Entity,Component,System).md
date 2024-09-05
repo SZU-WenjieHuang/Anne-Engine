@@ -214,5 +214,30 @@ for (auto entity : m_registry->view<Position, Velocity>()) {
 
 这段代码会遍历所有同时拥有 `Position` 和 `Velocity` 组件的实体，并更新它们的位置。
 
+### View的更多解释
 通过这种方式，`m_registry->view` 提供了一种高效的方式来查找并操作具有特定组件的实体集合。这种方法在大型游戏和复杂实时应用中非常有用，因为它能大幅提高系统的可维护性和性能。
 
+在ECS（实体-组件-系统）架构中，`m_registry->view<component::MeshData>()` 和 `m_registry->view<component::NameComponent, component::Camera>()` 表示从 `m_registry` 中获取一个视图（view），它是对所有具有指定组件的实体的一个集合。
+
+### 概念解析
+
+1. **Registry**:
+   - `m_registry` 通常是一个中央管理器，负责管理所有的实体和它们的组件。它允许你高效地查询和管理实体的状态。
+
+2. **View**:
+   - `view` 是一种查询机制，用于获取所有包含特定组件的实体。在 `ECS` 中，每个实体可以拥有多个组件，而视图让我们可以高效地迭代这些实体，获取它们的组件数据。
+   - 例如，调用 `m_registry->view<component::MeshData>()` 返回一个视图，包含所有拥有 `MeshData` 组件的实体。
+
+3. **视图迭代**:
+   - 在 `BasicRender` 函数中，`scene_view.each()` 是一个迭代器，遍历所有匹配的实体。在循环中，你可以获取两个元素：`entity`（实体标识符）和 `mesh_data`（对应的组件数据）。
+
+4. **组件的存在检查**:
+   - 代码中通过 `if (mesh_data.mesh == nullptr)` 检查 mesh 是否有效。如果无效则跳过这一轮循环。这样可以避免在渲染时出现错误。
+
+5. **函数的使用**:
+   - `ForeachCamera` 函数使用了 `m_registry->view<component::NameComponent, component::Camera>()`，它获取所有同时附加了 `NameComponent` 和 `Camera` 的实体。这样可以将每个相机的名称和对象传递给一个回调函数 `func` 进行处理。
+
+### 总结
+
+- `m_registry->view<...>()` 提供了一种灵活的方式来访问和操作特定组件的实体。这种机制非常适合于游戏引擎和其他需要高效实体管理的应用，因为你可以轻松地遍历所有组件，避免了繁琐的手动管理。
+- 这种架构支持高效且模块化的代码设计，使得不同的系统可以独立工作，而无需过多依赖具体的实体实现。

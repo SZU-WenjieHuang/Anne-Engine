@@ -161,3 +161,12 @@ Others
 # August.23 2024 Fri
 
 1. 完善Scene类，和Inspector类
+
+
+# September.05 2024 Thu
+
+1. 上周工作忙了很多，一下子多了很多并行的需求和任务
+2. 这周开始，继续完善！ Scene类和Inspector类要开发完，ECS模式的UI框架。
+3. 完成Scene类
+4. 完成Inspector类
+5. 明天可以开始PannelPreference类的开发

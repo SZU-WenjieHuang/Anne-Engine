@@ -86,10 +86,23 @@ void InspectorPanel::Show()
 }
 
 /*
-@brief 查询所有的SceneNode
+@brief 查询所有的SceneNode。并增加复选框来修改对应的Scene属性(是反射的一种了)
 */
 void InspectorPanel::InspectSceneNode()
 {
-    // auto &config = SceneManager::Instance().GetCurrentScene()->GetConfig();
-
+    auto &config = SceneManager::Instance().GetCurrentScene()->GetConfig();
+    if (ImGui::CollapsingHeader("Scene Setting", nullptr, ImGuiTreeNodeFlags_DefaultOpen))
+    {
+        // Todo:
+        ImGui::Checkbox("Anti-Aliasing", &config.enable_antialias);
+        if (ImGui::BeginItemTooltip())
+        {
+            ImGui::Text("Need to fix: AA does not work!");
+            ImGui::EndTooltip();
+        }
+        // ImGui::Checkbox("Bloom", &config.enable_bloom);
+        ImGui::Checkbox("Gamma Correction", &config.enable_gamma_correction);
+        ImGui::Checkbox("HDR", &config.enable_hdr);
+        ImGui::SliderFloat("Ambient Strength", &config.ambient_strength, 0.0f, 1.0f, "%.2f");
+    }
 }

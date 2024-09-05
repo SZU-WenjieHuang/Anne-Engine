@@ -234,3 +234,32 @@ void Scene::BasicRender(ShaderProgram::Ptr &shader)
     // }
 }
 
+// 每个相机都执行一定的函数 todo: 完善
+void Scene::ForeachCamera(CaptureCameraFunction &func)
+{
+    // auto view = m_registry->view<component::NameComponent, component::Camera>();
+    // for (auto [_, name, camera] : view.each())
+    // {
+    //     func(name.name, camera);
+    // }
+}
+
+
+nlohmann::json Scene::GetSceneFile()
+{
+    nlohmann::json _jsonfile;
+    _jsonfile["Graph"] = m_root;
+    return _jsonfile;
+}
+
+
+Scene::Node::Ptr &Scene::GetSceneNodeByEntity(entt::entity entity)
+{
+    return m_entityToNodeCache[entity];
+}
+
+
+void Scene::GetSceneNodeByEntity(entt::entity entity, Node::Ptr &node)
+{
+    node = m_entityToNodeCache[entity];
+}
